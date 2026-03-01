@@ -8,9 +8,33 @@ Simulation scripts for the **Vehicle-Level Control Concept** of an L5 electric a
 
 | File | Language | Description |
 |------|----------|-------------|
+| `3D Simulation.html` | HTML / JS (Three.js) | Interactive 3D WebGL simulation of the VCU with real-time telemetry |
 | `Extensive_Matlab_Simulation.m` | MATLAB | Full vehicle dynamics simulation with yaw control and torque vectoring |
 | `sim_step_steer.py` | Python | Transient tire dynamics — relaxation length lag simulation |
 | `sim_qp_w.py` | Python | QP weighting parameter sigmoid transition visualization |
+
+---
+
+---
+
+## `3D Simulation.html`
+
+An interactive, browser-based 3D simulation of the L5 Auto-Rickshaw using **Three.js**. It runs a complete 3-DOF vehicle physics model, an Extended Kalman Filter (EKF), and the Vehicle Control Unit (VCU) logic in real-time.
+
+### What it does
+- **Physics Engine:** Runs a 3-DOF bicycle model with Pacejka tire kinematics at a 5ms physics sub-step using RK4 integration.
+- **VCU Logic:** Implements Adaptive Sliding Mode Control (ASMC) for yaw moment generation and dynamic load transfer calculation.
+- **Real-Time Telemetry:** Displays longitudinal/lateral velocity, yaw rate, sideslip angle, and dynamic axle loads.
+- **Live Graphs:** Plots Reference Yaw Rate vs Actual Yaw Rate, Left/Right Motor Torque Allocation, and Rollover Index (RI).
+- **Interactive Environment:**
+  - Adjust payload mass (362 kg - 766 kg).
+  - Adjust road gradient (-15° to +15°).
+  - Adjust base friction (μ).
+  - Inject active faults (μ-Split mud patch, Steering Sensor failure).
+- **Controls:** Drive the vehicle in the 3D arena using `W/A/S/D` or `Arrow Keys`.
+
+### How to run
+Simply open `3D Simulation.html` in any modern web browser (Chrome, Edge, Firefox, Safari). No server required.
 
 ---
 
@@ -111,5 +135,6 @@ Requires `numpy`, `matplotlib`.
 
 | Language | Packages |
 |----------|----------|
+| HTML / JS | `Three.js` (loaded via unpkgCDN) |
 | Python 3.x | `numpy`, `matplotlib` |
 | MATLAB R2020a+ | No external toolboxes |
